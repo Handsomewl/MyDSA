@@ -1,60 +1,73 @@
 #pragma once
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-// ÊµÏÖÒ»¸öÊÖĞ´Õ»£¬²¢ÖÆ¶¨Ïà¹ØµÄ³ÌĞò²âÊÔ;
-template<typename T> class Stack{		// public vector<T> ¹«ÓĞ¼Ì³Ğ×ÔÏòÁ¿Àà£»Ìí¼Óºó»áµ¼ÖÂÒ»Ğ©Êı¾İºÍ½Ó¿ÚĞ¹Â¶£¬²»ÍÆ¼ö
+// å®ç°ä¸€ä¸ªæ‰‹å†™æ ˆ
+template <typename T>
+class Stack
+{ // public vector<T> å¯ä»¥å…¬æœ‰ç»§æ‰¿è‡ªå‘é‡åŸºç±»ï¼Œä½†æ˜¯éæ ˆé¡¶å…ƒç´ ä¼šæ³„éœ²ï¼Œä¸æ¨èï¼›
 private:
 	vector<T> data;
-public:
-	bool Empty();						// check if this stack is empty
-	void Push(T const& e);	 			// add e to stack;
-	void Pop();							// remove item at top of the stack;
-	T top();			 				// return item at top of the stack
-	void output();						// display and pop all elements;
-};
 
+public:
+	bool Empty();		   // check if this stack is empty
+	void Push(T const &e); // add e to stack;
+	void Pop();			   // remove item at top of the stack;
+	T top();			   // return item at top of the stack
+	void output();		   // display and pop all elements;
+};
 
 // implement the function above
 
-template<typename T> bool Stack<T> ::Empty() {	//check if this stack is empty
+template <typename T>
+bool Stack<T>::Empty()
+{ //check if this stack is empty
 	return data.empty();
 }
 
-template<typename T> void Stack<T>::Push(T const &e) { // add e to stack;
-	data.push_back(e);								
+template <typename T>
+void Stack<T>::Push(T const &e)
+{ // add e to stack;
+	data.push_back(e);
 }
 
-
-template<typename T> void Stack<T>::Pop() { // remove item at top of the stack;
-	data.pop_back();							
+template <typename T>
+void Stack<T>::Pop()
+{ // remove item at top of the stack;
+	data.pop_back();
 }
 
-template<typename T> T Stack<T>::top() {		// return item at top of the stack
+template <typename T>
+T Stack<T>::top()
+{ // return item at top of the stack
 	if (!data.empty())
 		// return data.back();
 		return data[data.size() - 1];
 	else
 		cout << "Stack is empty" << endl;
 }
-template<typename T>void Stack<T>:: output() {	// display and pop all elements;
-	while (!this->Empty()) {
-		cout << this->top();					// display the top element;
-		this->Pop();							// Pop the top element;
+template <typename T>
+void Stack<T>::output()
+{ // display and pop all elements;
+	while (!this->Empty())
+	{
+		cout << this->top(); // display the top element;
+		this->Pop();		 // Pop the top element;
 	}
 	cout << endl;
 }
 
 // implement some algorithms
 
-// ½øÖÆ×ª»»Ëã·¨£¬²Î¿¼µË¿¡»ÔÀÏÊ¦DSA MOOC
-void convert(Stack<char>& s, _int64 n, int base) {	// n¶ÔÓ¦ÊäÈëÊı£¬base±íÊ¾½øÖÆ
+// å‚è€ƒDSA MOOC
+void convert(Stack<char> &s, _int64 n, int base)
+{ // n:input number; base: base to convert;
 	static char digit[] = {
-		'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'
-	};
-	while (n > 0) {
-		s.Push(digit[n % base]);	// ÓàÊıÈëÕ»
-		n /= base;					// ¸üĞÂÉÌ
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+	while (n > 0)
+	{
+		s.Push(digit[n % base]); // ä½™æ•°å…¥æ ˆ
+		n /= base;				 // æ›´æ–°å•†
 	}
 }
